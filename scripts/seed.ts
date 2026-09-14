@@ -40,22 +40,22 @@ const upload = await ingestDocument(spectron, {
 
 console.log(
   upload.deduplicated
-    ? `FAQ already ingested (${upload.id})`
+    ? `FAQ already uploaded (${upload.id}), checking processing status...`
     : `FAQ uploaded (${upload.id}), waiting for processing...`,
 );
 
 // Ingestion is asynchronous server-side: extract → chunk → embed → ready.
-if (!upload.deduplicated) {
-  const deadline = Date.now() + 120_000;
-  let status = upload.status;
-  while (status !== 'ready' && status !== 'failed') {
-    if (Date.now() > deadline) throw new Error(`Timed out in status "${status}"`);
-    await new Promise((resolve) => setTimeout(resolve, 2_000));
-    status = (await spectron.documents.get(upload.id)).status;
-    console.log(`  status: ${status}`);
-  }
-  if (status === 'failed') throw new Error('FAQ ingestion failed');
+const deadline = Date.now() + 120_000;
+let status = upload.deduplicated
+  ? (await spectron.documents.get(upload.id)).status
+  : upload.status;
+while (status !== 'ready' && status !== 'failed') {
+  if (Date.now() > deadline) throw new Error(`Timed out in status "${status}"`);
+  await new Promise((resolve) => setTimeout(resolve, 2_000));
+  status = (await spectron.documents.get(upload.id)).status;
+  console.log(`  status: ${status}`);
 }
+if (status === 'failed') throw new Error('FAQ ingestion failed');
 
 const facts = [
   'The staging environment resets every night at 02:00, so anything left there does not survive to the next day.',

@@ -85,5 +85,5 @@ teammate C ──► │    (agent)    │        │ facts · semantic recall �
 
 ## Requirements
 
-- Node.js 22.13+
+- Node.js 22.18+ (22.x), or 24.11+
 - Spectron credentials ([request access](https://surrealdb.com/spectron))
