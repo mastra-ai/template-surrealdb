@@ -1,9 +1,9 @@
-- **Company Brain**
+# Company Brain with SurrealDB
 
-  Company Brain turns team conversations and company documents into shared
-  knowledge. Tell it a customer detail, decision, or process, then ask about it
-  from another conversation. It recalls what the team has taught it and searches
-  uploaded documents to answer questions with sources.
+Company Brain turns team conversations and company documents into shared
+knowledge. Tell it a customer detail, decision, or process, then ask about it
+from another conversation. It recalls what the team has taught it and searches
+uploaded documents to answer questions with sources.
 
 - **Why we built this**
 
