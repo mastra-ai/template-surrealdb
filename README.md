@@ -23,54 +23,19 @@ uploaded documents to answer questions with sources.
   - Keep shared knowledge across server restarts. Chat history resets, but the
     facts stored in hosted memory remain available.
 
-- **Quick start**
+## Quickstart 🚀
 
-  Use Node.js 22.18+ (22.x), or 24.11+. You'll also need an Anthropic API key
-  and access to [SurrealDB Agent Memory (Spectron)](https://surrealdb.com/spectron).
-  Spectron hosts the memory and document search; you don't need to run a database,
-  vector store, or embedding model locally.
+Use Node.js 22.18+ (22.x), or 24.11+.
 
-  - **1. Clone the template**
-
-    ```bash
-    npx create-mastra@latest my-company-brain --template template-surrealdb-company-brain
-    cd my-company-brain
-    npm install
-    ```
-
-  - **2. Add your API keys**
-
-    Copy the example environment file, then fill in the required values:
-
-    ```bash
-    cp .env.example .env
-    ```
-
-    - `ANTHROPIC_API_KEY`: gives the agent access to its language model.
-    - `SPECTRON_ENDPOINT`: your Spectron API endpoint origin.
-    - `SPECTRON_CONTEXT`: the shared memory context for this company brain.
-    - `SPECTRON_API_KEY`: your Spectron bearer token.
-
-    [Request Spectron access](https://surrealdb.com/spectron) to obtain the endpoint,
-    context, and token. Every conversation in this template uses the same context.
-
-  - **3. Start the dev server**
-
-    Seed the sample team FAQ and starter facts, then start the server:
-
-    ```bash
-    npm run seed
-    npm run dev
-    ```
-
-    Open [Mastra Studio](http://localhost:4111), select **Company Brain**, and ask:
-
-    > What did the Northwind renewal call decide?
-
-    The answer should recall that Northwind plans to expand to 12 turbines next
-    quarter and wants faster blade-crack detection. To try document search, ask:
-    “Do I need approval for a $150 expense?” The sample FAQ says expenses at or
-    under $200 are automatically approved, with receipts kept for 90 days.
+1. **Clone the template**
+   - Run `npx create-mastra@latest my-company-brain --template template-surrealdb-company-brain` to scaffold the project locally.
+   - Run `cd my-company-brain` and `npm install`.
+2. **Add your API keys**
+   - Copy `.env.example` to `.env` and fill in `ANTHROPIC_API_KEY`, `SPECTRON_ENDPOINT`, `SPECTRON_CONTEXT`, and `SPECTRON_API_KEY`.
+   - [Request Spectron access](https://surrealdb.com/spectron) to obtain the endpoint, shared memory context, and token. Spectron hosts memory and document search; every conversation uses the same context.
+3. **Start the dev server**
+   - Run `npm run seed` to load the sample FAQ and starter facts, then `npm run dev`.
+   - Open [Mastra Studio](http://localhost:4111), select **Company Brain**, and ask “What did the Northwind renewal call decide?” Expect an answer about expanding to 12 turbines next quarter and faster blade-crack detection.
 
 - **Making it yours**
 
