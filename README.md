@@ -1,89 +1,92 @@
-# Company Brain with SurrealDB Agent Memory
+- **Company Brain**
 
-A shared organizational memory the whole team talks to. What one person
-teaches it, everyone can recall — decisions, customer details, tribal
-knowledge, the stuff that usually lives in someone's head and leaves when
-they do.
+  Company Brain turns team conversations and company documents into shared
+  knowledge. Tell it a customer detail, decision, or process, then ask about it
+  from another conversation. It recalls what the team has taught it and searches
+  uploaded documents to answer questions with sources.
 
-Built on [SurrealDB Agent Memory (Spectron)](https://surrealdb.com/spectron),
-the hosted memory platform, via
-[`@surrealdb/mastra-ai`](https://www.npmjs.com/package/@surrealdb/mastra-ai).
-Fact extraction, embeddings, semantic recall, and document search all run
-server-side: **there is no database, vector store, or embedding model to
-operate**. The agent's process holds nothing durable — restart it and
-everything the team taught is still there, because it never lived in the
-process.
+- **Why we built this**
 
-## What you can try
+  The person who knows why a decision was made isn't always in the room.
+  Customer details, workarounds, and unwritten processes can stay with one
+  teammate, leaving everyone else to track them down or ask the same questions
+  again. Company Brain gives that knowledge a shared home, so an answer doesn't
+  depend on finding the person who first learned it.
 
-- Teach it something in one conversation — *"The staging environment resets
-  nightly at 02:00"* — then ask about it in a **different thread, as a
-  different teammate**. The memory is the common ground, not the chat
-  history.
-- Ask a policy question — *"Do I need approval for a $150 expense?"* — and
-  get an answer grounded in the ingested team FAQ.
-- Correct the record — *"We moved the weekly demo to Thursdays"* — and watch
-  it forget the stale fact and store the new one.
-- Kill the dev server and start it again: fresh process, same brain.
+- **Features**
 
-## Quick start
+  - Teach it a fact in one conversation and recall it from another, including
+    conversations with different teammates.
+  - Ask policy questions and get answers grounded in uploaded company documents.
+  - Correct a remembered fact so it can remove the stale memory and store the
+    replacement.
+  - Keep shared knowledge across server restarts. Chat history resets, but the
+    facts stored in hosted memory remain available.
 
-**1. Create the project** (or clone this repo directly)
+- **Quick start**
 
-```bash
-npx create-mastra@latest my-company-brain --template template-surrealdb-company-brain
-cd my-company-brain && npm install
-```
+  Use Node.js 22.18+ (22.x), or 24.11+. You'll also need an Anthropic API key
+  and access to [SurrealDB Agent Memory (Spectron)](https://surrealdb.com/spectron).
+  Spectron hosts the memory and document search; you don't need to run a database,
+  vector store, or embedding model locally.
 
-**2. Add your keys**
+  - **1. Clone the template**
 
-```bash
-cp .env.example .env
-```
+    ```bash
+    npx create-mastra@latest my-company-brain --template template-surrealdb-company-brain
+    cd my-company-brain
+    npm install
+    ```
 
-Set `ANTHROPIC_API_KEY` plus your Spectron credentials — get those at
-[surrealdb.com/spectron](https://surrealdb.com/spectron).
+  - **2. Add your API keys**
 
-**3. Seed and run**
+    Copy the example environment file, then fill in the required values:
 
-```bash
-npm run seed
-npm run dev
-```
+    ```bash
+    cp .env.example .env
+    ```
 
-Open Studio at `http://localhost:4111`, pick **Company Brain**, and ask:
-*"What did the Northwind renewal call decide?"*
+    - `ANTHROPIC_API_KEY`: gives the agent access to its language model.
+    - `SPECTRON_ENDPOINT`: your Spectron API endpoint origin.
+    - `SPECTRON_CONTEXT`: the shared memory context for this company brain.
+    - `SPECTRON_API_KEY`: your Spectron bearer token.
 
-## How it works
+    [Request Spectron access](https://surrealdb.com/spectron) to obtain the endpoint,
+    context, and token. Every conversation in this template uses the same context.
 
-```
-teammate A ──► ┌───────────────┐        ┌─────────────────────────┐
-teammate B ──► │ Company Brain │ ◄────► │ SurrealDB Agent Memory  │
-teammate C ──► │    (agent)    │        │ facts · semantic recall │
-               └───────────────┘        │ profile · documents     │
-                                        └─────────────────────────┘
-```
+  - **3. Start the dev server**
 
-- `src/mastra/agents/company-brain.ts` — the agent. `SpectronMemory` is its
-  Mastra memory provider (facts extracted from every turn, server-side), and
-  `createSpectronTools` gives it explicit control: `spectronRemember`,
-  `spectronRecall`, `spectronForget`, `spectronContext`, and
-  `spectronSearchDocuments`.
-- `src/mastra/spectron.ts` — the one client and context every conversation
-  shares. That single shared context *is* the company brain.
-- `scripts/seed.ts` — ingests the sample FAQ into the document corpus and
-  plants a few starter facts so the first question has an answer.
+    Seed the sample team FAQ and starter facts, then start the server:
 
-## Environment variables
+    ```bash
+    npm run seed
+    npm run dev
+    ```
 
-| Variable | Required | Notes |
-|---|---|---|
-| `ANTHROPIC_API_KEY` | yes | LLM for the agent |
-| `SPECTRON_ENDPOINT` | yes | API endpoint origin |
-| `SPECTRON_CONTEXT` | yes | The memory context — one per brain |
-| `SPECTRON_API_KEY` | yes | Bearer token |
+    Open [Mastra Studio](http://localhost:4111), select **Company Brain**, and ask:
 
-## Requirements
+    > What did the Northwind renewal call decide?
 
-- Node.js 22.18+ (22.x), or 24.11+
-- Spectron credentials ([request access](https://surrealdb.com/spectron))
+    The answer should recall that Northwind plans to expand to 12 turbines next
+    quarter and wants faster blade-crack detection. To try document search, ask:
+    “Do I need approval for a $150 expense?” The sample FAQ says expenses at or
+    under $200 are automatically approved, with receipts kept for 90 days.
+
+- **Making it yours**
+
+  - Give it your team's knowledge: replace the sample FAQ in
+    `data/company-faq.md` and the starter facts in `scripts/seed.ts` before
+    seeding a fresh Spectron context.
+  - Adapt how it answers: update the instructions in
+    `src/mastra/agents/company-brain.ts` to follow your team's preferred citation
+    format or ask clarifying questions when a customer or project is ambiguous.
+
+- **About Mastra templates**
+
+  Mastra templates are ready-to-use projects that show what you can build with
+  Mastra. Clone one, try it in Studio, and adapt it to your use case.
+
+  Company Brain is a partnership template with SurrealDB, using
+  [`@surrealdb/mastra-ai`](https://www.npmjs.com/package/@surrealdb/mastra-ai)
+  to connect the agent to SurrealDB Agent Memory.
+  [Want to contribute?](https://github.com/surrealdb/mastra-template)
