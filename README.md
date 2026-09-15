@@ -25,7 +25,10 @@ uploaded documents to answer questions with sources.
 
 ## Quickstart 🚀
 
-Use Node.js 22.18+ (22.x), or 24.11+.
+### Prerequisites
+
+- **Anthropic API key** — used by the default model; you can configure a different model and its provider credentials.
+- **SurrealDB Agent Memory (Spectron) credentials** — an API endpoint, shared memory context, and API key for persistent memory and document search. [Request access](https://surrealdb.com/spectron).
 
 1. **Clone the template**
    - Run `npx create-mastra@latest my-company-brain --template template-surrealdb-company-brain` to scaffold the project locally.
