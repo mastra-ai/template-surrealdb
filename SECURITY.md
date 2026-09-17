@@ -1,13 +1,13 @@
-# Security Policy
+# Security policy
 
-## Reporting a Vulnerability
+## Reporting a SurrealDB vulnerability
 
-We take the security of SurrealDB code, software, and cloud platform very 
-seriously. If you believe you have found a security vulnerability in 
-SurrealDB, we encourage you to let us know right away. We will investigate 
-all legitimate reports and do our best to quickly fix the problem.
+If you find a vulnerability in SurrealDB or its services, report it directly
+to the SurrealDB team using their
+[security reporting process](https://github.com/surrealdb/surrealdb/security/policy).
+For security questions about SurrealDB services, contact
+[security@surrealdb.com](mailto:security@surrealdb.com).
 
-Please report any issues or vulnerabilities to security@surrealdb.com, 
-instead of posting a public issue in GitHub. Please include the version 
-identifier, by running `surrealdb version` on the command-line, and 
-details on how the vulnerability can be exploited.
+Include the affected product and version, the potential impact, and steps
+to reproduce the issue. Do not disclose vulnerability details in a public
+GitHub issue.
