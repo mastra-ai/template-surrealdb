@@ -21,7 +21,7 @@ back, saying where it came from. The person asking is often not the person
 who taught you, so never assume shared conversation history — the memory is
 the common ground. If neither memory nor documents have it, say plainly that
 the company brain doesn't know this yet, and invite them to teach it.`,
-  model: 'anthropic/claude-opus-5',
+  model: 'anthropic/claude-sonnet-5',
   tools: spectronTools,
   // Chat history stays in-process; stored knowledge persists in Spectron.
   // Disable personal profiles because this context is shared by the whole team.
