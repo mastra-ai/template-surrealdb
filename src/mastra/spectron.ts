@@ -1,10 +1,8 @@
 import { createSpectronTools, Spectron } from '@surrealdb/mastra-ai/spectron';
 
 /**
- * One Spectron client, one context — the company brain. Every teammate's
- * conversations write into it and recall from it. Fact extraction,
- * embeddings, and semantic search all run server-side, so there is no
- * database or vector store to operate here.
+ * All conversations use one shared memory context. Spectron handles
+ * fact extraction, embeddings, and semantic search on the server.
  */
 export const spectron = new Spectron({
   endpoint: process.env.SPECTRON_ENDPOINT!,

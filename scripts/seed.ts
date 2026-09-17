@@ -2,27 +2,14 @@ import { readFile } from 'node:fs/promises';
 import { ingestDocument, Spectron } from '@surrealdb/mastra-ai/spectron';
 
 /**
- * Gives the company brain something to know on day one: ingests the sample
- * FAQ into the document corpus and plants a few starter facts. Safe to
- * re-run — document uploads deduplicate on content hash.
+ * Uploads the sample FAQ and stores starter facts for the first Studio run.
+ * Document uploads deduplicate on content hash.
  */
 
 try {
   process.loadEnvFile();
 } catch {
   // No .env file — fine if the variables are exported some other way.
-}
-
-const missing = ['SPECTRON_ENDPOINT', 'SPECTRON_CONTEXT', 'SPECTRON_API_KEY'].filter(
-  (name) => !process.env[name],
-);
-
-if (missing.length > 0) {
-  console.error(
-    `Missing environment variables: ${missing.join(', ')}\n` +
-      'Copy .env.example to .env and fill it in, then run again.',
-  );
-  process.exit(1);
 }
 
 const spectron = new Spectron({

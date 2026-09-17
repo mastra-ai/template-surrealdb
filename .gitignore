@@ -2,6 +2,7 @@ node_modules/
 dist/
 .mastra/
 .env
-.env.local
+.env.*
+!.env.example
 *.log
 .DS_Store

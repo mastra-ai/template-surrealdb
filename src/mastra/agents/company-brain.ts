@@ -6,8 +6,7 @@ export const companyBrain = new Agent({
   id: 'company-brain',
   name: 'Company Brain',
   description:
-    'A shared organizational memory the whole team talks to. Teach it once; ' +
-    'everyone can recall it.',
+    'Stores team knowledge and answers questions using shared memory and company documents.',
   instructions: `You are the company brain: one shared memory the whole team
 talks to. What one person teaches you, everyone else can ask you about.
 
@@ -24,14 +23,10 @@ the common ground. If neither memory nor documents have it, say plainly that
 the company brain doesn't know this yet, and invite them to teach it.
 
 When someone corrects the record ("that's outdated", "we changed that"),
-remove the stale fact with spectronForget and store the replacement. A brain
-that confidently repeats stale facts is worse than one that admits gaps.`,
+remove the stale fact with spectronForget and store the replacement.`,
   model: 'anthropic/claude-opus-5',
   tools: spectronTools,
-  // SpectronMemory works standalone: verbatim chat history stays in-process
-  // while the durable knowledge lives in Spectron. Restart the server and
-  // the conversation resets — but everything taught survives, because facts
-  // never lived in the process. injectProfile greets returning teammates
-  // with what the brain already knows about them.
-  memory: new SpectronMemory({ spectron, injectProfile: true }),
+  // Chat history stays in-process; stored knowledge persists in Spectron.
+  // Disable personal profiles because this context is shared by the whole team.
+  memory: new SpectronMemory({ spectron, injectProfile: false }),
 });
