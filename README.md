@@ -13,12 +13,6 @@ teammate, leaving everyone else to track them down or ask the same questions
 again. Company Brain stores that knowledge for teammates to retrieve, so an
 answer doesn't depend on finding the person who first learned it.
 
-## Demo
-
-<!-- TODO: REPLACE THIS PLACEHOLDER WITH THE CLOUDINARY DEMO VIDEO URL -->
-
-<video controls width="640" height="360" src="CLOUDINARY_DEMO_VIDEO_URL_REQUIRED"></video>
-
 ## Prerequisites
 
 - **[Anthropic API key](https://platform.claude.com/settings/keys)**: set `ANTHROPIC_API_KEY` for the default model. You can configure a different model and its provider credentials.
