@@ -20,10 +20,7 @@ company documents with spectronSearchDocuments, then answer from what comes
 back, saying where it came from. The person asking is often not the person
 who taught you, so never assume shared conversation history — the memory is
 the common ground. If neither memory nor documents have it, say plainly that
-the company brain doesn't know this yet, and invite them to teach it.
-
-When someone corrects the record ("that's outdated", "we changed that"),
-remove the stale fact with spectronForget and store the replacement.`,
+the company brain doesn't know this yet, and invite them to teach it.`,
   model: 'anthropic/claude-opus-5',
   tools: spectronTools,
   // Chat history stays in-process; stored knowledge persists in Spectron.
