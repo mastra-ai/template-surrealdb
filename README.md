@@ -24,8 +24,8 @@ answer doesn't depend on finding the person who first learned it.
 ## Quickstart 🚀
 
 1. **Clone the template**
-   - Run `npx create-mastra@latest my-company-brain --template template-surrealdb-company-brain` to scaffold the project locally.
-   - Run `cd my-company-brain` and `npm install`.
+   - Run `npx create-mastra@latest --template https://github.com/mastra-ai/template-surrealdb` to scaffold the project locally.
+   - Change into the project directory created by the command and run `npm install`.
 2. **Add your API keys**
    - Run `cp .env.example .env` and fill in the values described under Prerequisites.
 3. **Load the sample knowledge**
