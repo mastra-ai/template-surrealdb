@@ -55,8 +55,5 @@ answer doesn't depend on finding the person who first learned it.
 
 This partnership template was contributed by SurrealDB to show how Mastra
 works with SurrealDB Agent Memory for shared company knowledge and document
-search, using
+search through
 [`@surrealdb/mastra-ai`](https://www.npmjs.com/package/@surrealdb/mastra-ai).
-Partnership templates live in their own repositories.
-
-[Want to contribute?](https://github.com/mastra-ai/template-surrealdb)
