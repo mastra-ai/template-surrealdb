@@ -13,10 +13,16 @@ teammate, leaving everyone else to track them down or ask the same questions
 again. Company Brain stores that knowledge for teammates to retrieve, so an
 answer doesn't depend on finding the person who first learned it.
 
+## Demo
+
+<!-- TODO: REPLACE THIS PLACEHOLDER WITH THE CLOUDINARY DEMO VIDEO URL -->
+
+<video controls width="640" height="360" src="CLOUDINARY_DEMO_VIDEO_URL_REQUIRED"></video>
+
 ## Prerequisites
 
-- **[Anthropic API key](https://platform.claude.com/settings/keys)** — set `ANTHROPIC_API_KEY` for the default model. You can configure a different model and its provider credentials.
-- **[SurrealDB Agent Memory (Spectron) credentials](https://surrealdb.com/agent-memory)** — request hosted access for persistent memory and document search. Use the supplied values for:
+- **[Anthropic API key](https://platform.claude.com/settings/keys)**: set `ANTHROPIC_API_KEY` for the default model. You can configure a different model and its provider credentials.
+- **[SurrealDB Agent Memory (Spectron) credentials](https://surrealdb.com/agent-memory)**: request hosted access for persistent memory and document search. Use the supplied values for:
   - `SPECTRON_ENDPOINT`: your API endpoint origin.
   - `SPECTRON_CONTEXT`: the memory context shared by every conversation.
   - `SPECTRON_API_KEY`: your bearer token.
@@ -36,9 +42,9 @@ answer doesn't depend on finding the person who first learned it.
 
 ## Try it out
 
-- Teach it something in one conversation — *“The staging environment resets nightly at 02:00”* — then ask about it in a **different thread, as a different teammate**. The memory is the common ground, not the chat history.
-- Ask a policy question — *“Do I need approval for a $150 expense?”* — and get an answer grounded in the ingested team FAQ. The sample policy approves expenses at or under $200 and requires keeping the receipt for 90 days.
-- Correct the record — *“Marta no longer owns the drone battery supplier relationship; Luis does now”* — and check that it forgets the stale fact and stores the replacement. This updates remembered facts; it doesn't rewrite uploaded documents.
+- Teach it something in one conversation, such as *“The staging environment resets nightly at 02:00”*, then ask about it in a **different thread, as a different teammate**. The memory is the common ground, not the chat history.
+- Ask a policy question: *“Do I need approval for a $150 expense?”* The answer should draw on the ingested team FAQ, which approves expenses at or under $200 and requires keeping the receipt for 90 days.
+- Correct the record: *“Marta no longer owns the drone battery supplier relationship; Luis does now.”* Check that it forgets the stale fact and stores the replacement. This updates remembered facts; it doesn't rewrite uploaded documents.
 - Kill the dev server and start it again: fresh process, same brain. Chat history resets, but knowledge stored in Spectron remains available.
 
 ## Customization
@@ -59,4 +65,4 @@ search, using
 [`@surrealdb/mastra-ai`](https://www.npmjs.com/package/@surrealdb/mastra-ai).
 Partnership templates live in their own repositories.
 
-[Want to contribute?](https://github.com/surrealdb/mastra-template)
+[Want to contribute?](https://github.com/mastra-ai/template-surrealdb)
